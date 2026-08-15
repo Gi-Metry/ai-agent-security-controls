@@ -1,0 +1,98 @@
+<svg viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, 'SF Mono', 'Menlo', monospace">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9" fill="none" stroke="#3d5a6c" stroke-width="1.5"/>
+    </marker>
+    <style>
+      .layer { fill: #f7f9fa; stroke: #3d5a6c; stroke-width: 1.5; }
+      .num { fill: #3d5a6c; font-size: 13px; font-weight: 700; }
+      .name { fill: #1a2b34; font-size: 16px; font-weight: 700; }
+      .desc { fill: #5a6b74; font-size: 11px; }
+      .threat { fill: #a23b2e; font-size: 10.5px; font-style: italic; }
+      .flow { stroke: #3d5a6c; stroke-width: 1.5; fill: none; }
+      .backbone-box { fill: #eef2f0; stroke: #4a6b52; stroke-width: 1.5; stroke-dasharray: 5 3; }
+      .bb-name { fill: #2f4a37; font-size: 14px; font-weight: 700; }
+      .bb-desc { fill: #4a6b52; font-size: 11px; }
+      .title { fill: #1a2b34; font-size: 15px; font-weight: 700; }
+      .caption { fill: #5a6b74; font-size: 11px; }
+    </style>
+  </defs>
+
+  <text x="40" y="34" class="title">Anatomy of an AI Agent: six layers of control</text>
+  <text x="40" y="52" class="caption">Five layers in the path of a request, and a backbone that threads through all of them.</text>
+
+  <!-- Request entry -->
+  <text x="40" y="145" class="desc" font-weight="700" fill="#3d5a6c">REQUEST</text>
+  <line x1="40" y1="152" x2="40" y2="200" class="flow"/>
+  <line x1="40" y1="176" x2="92" y2="176" class="flow" marker-end="url(#arrow)"/>
+
+  <!-- Layer boxes: five in a row -->
+  <!-- 1 Front Door -->
+  <rect x="96" y="86" width="150" height="120" rx="4" class="layer"/>
+  <text x="108" y="108" class="num">01</text>
+  <text x="108" y="130" class="name">Front Door</text>
+  <text x="108" y="150" class="desc">How requests</text>
+  <text x="108" y="164" class="desc">reach the agent</text>
+  <text x="108" y="192" class="threat">identity / access</text>
+
+  <!-- 2 Harness -->
+  <rect x="262" y="86" width="150" height="120" rx="4" class="layer"/>
+  <text x="274" y="108" class="num">02</text>
+  <text x="274" y="130" class="name">Harness</text>
+  <text x="274" y="150" class="desc">The runtime that</text>
+  <text x="274" y="164" class="desc">runs the agent</text>
+  <text x="274" y="192" class="threat">prompt injection</text>
+
+  <!-- 3 Brain -->
+  <rect x="428" y="86" width="150" height="120" rx="4" class="layer"/>
+  <text x="440" y="108" class="num">03</text>
+  <text x="440" y="130" class="name">Brain</text>
+  <text x="440" y="150" class="desc">Model, instructions,</text>
+  <text x="440" y="164" class="desc">configuration</text>
+  <text x="440" y="192" class="threat">manipulation / drift</text>
+
+  <!-- 4 Hands -->
+  <rect x="594" y="86" width="150" height="120" rx="4" class="layer"/>
+  <text x="606" y="108" class="num">04</text>
+  <text x="606" y="130" class="name">Hands</text>
+  <text x="606" y="150" class="desc">Tools, credentials,</text>
+  <text x="606" y="164" class="desc">integrations</text>
+  <text x="606" y="192" class="threat">blast radius</text>
+
+  <!-- 5 Output -->
+  <rect x="760" y="86" width="150" height="120" rx="4" class="layer"/>
+  <text x="772" y="108" class="num">05</text>
+  <text x="772" y="130" class="name">Output</text>
+  <text x="772" y="150" class="desc">What the agent</text>
+  <text x="772" y="164" class="desc">sends into the world</text>
+  <text x="772" y="192" class="threat">exfiltration</text>
+
+  <!-- Flow arrows between layers -->
+  <line x1="246" y1="146" x2="262" y2="146" class="flow" marker-end="url(#arrow)"/>
+  <line x1="412" y1="146" x2="428" y2="146" class="flow" marker-end="url(#arrow)"/>
+  <line x1="578" y1="146" x2="594" y2="146" class="flow" marker-end="url(#arrow)"/>
+  <line x1="744" y1="146" x2="760" y2="146" class="flow" marker-end="url(#arrow)"/>
+
+  <!-- Output to world -->
+  <line x1="910" y1="146" x2="880" y2="146" class="flow"/>
+  <text x="820" y="240" class="desc" font-weight="700" fill="#3d5a6c">EFFECT ON</text>
+  <text x="820" y="254" class="desc" font-weight="700" fill="#3d5a6c">THE WORLD</text>
+  <line x1="835" y1="206" x2="835" y2="228" class="flow" marker-end="url(#arrow)"/>
+
+  <!-- Backbone rail beneath all five -->
+  <rect x="96" y="300" width="814" height="86" rx="4" class="backbone-box"/>
+  <text x="112" y="326" class="num" fill="#4a6b52">06</text>
+  <text x="146" y="326" class="bb-name">Backbone</text>
+  <text x="112" y="352" class="bb-desc">A thread through all five layers, on by default wherever the agent runs.</text>
+  <text x="112" y="372" class="bb-desc">Logging (full chain: person → session → agent identity → action)  ·  Activity monitoring  ·  Attribution to a human</text>
+
+  <!-- connectors from each layer down to backbone -->
+  <line x1="171" y1="206" x2="171" y2="300" class="flow" stroke-dasharray="4 3" opacity="0.55"/>
+  <line x1="337" y1="206" x2="337" y2="300" class="flow" stroke-dasharray="4 3" opacity="0.55"/>
+  <line x1="503" y1="206" x2="503" y2="300" class="flow" stroke-dasharray="4 3" opacity="0.55"/>
+  <line x1="669" y1="206" x2="669" y2="300" class="flow" stroke-dasharray="4 3" opacity="0.55"/>
+  <line x1="835" y1="206" x2="835" y2="300" class="flow" stroke-dasharray="4 3" opacity="0.55"/>
+
+  <text x="40" y="424" class="caption">Design principle: assume the agent has already been taken over. The controls that still work are the ones the agent cannot reach,</text>
+  <text x="40" y="440" class="caption">change, or switch off. © 2026 Gina Metry · CC BY-NC-ND 4.0</text>
+</svg>
